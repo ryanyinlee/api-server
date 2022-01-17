@@ -2,16 +2,17 @@
 
 const sequelize = require("sequelize");
 
-const Game = (sequelize, DataTypes) => sequelize.define('Game', {
+const gameSchema = (sequelize, DataTypes) => sequelize.define('Game', {
     title: {
         type: DataTypes.STRING,
         // allowNull: false,
     },
 
-    releaseYear: {
-        type: DataTypes.STRING,
+    peopleId: {
+        type: DataTypes.INTEGER,
         // allowNull: false,
-    },
+
+    }
 });
 
-module.exports = Game;
+module.exports = gameSchema;

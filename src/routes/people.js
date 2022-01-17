@@ -2,77 +2,35 @@
 
 const express = require('express');
 
-const {PeopleModel}= require('../models');
+const { PeopleCollection } = require('../models');
 
 const router = express.Router(); // object defines routing logic
 
-router.get('/people', read)
-router.get('/people/:id', read)
-router.post('/people', create)
-router.patch('/people/:id', update)
-// router.put('/people/:id', update)
-router.delete('/people/:id', remove)
+//create
+router.post('/people', async (request, response) => {
+    let people = await PeopleCollection.create(request.params.body);
+    console.log(JSON.stringify(people));
+    response.status(201).send(people);
+  });
 
-async function read(req, res, next) {
+// get or read
+router.get('/people', async (request, response) => {
+    let people = await PeopleCollection.read();
+    response.status(200).send(people);
+  });
 
 
-console.log('Reading from people.');
+// update  
+  router.patch('/people/:id', async (request, response) => {
+    let people = await PeopleCollection.update(request.params.id, request.body);
+    response.statu(201).send(people);
+  });
 
-let { id } = req.params;
-let people;
+  // delete  
+  router.delete('/people/:id', async (request, response) => {
+    let people = await PeopleCollection.destroy(request.params.id);
+    response.status(204).send(people);
+  });
 
-if (id) {
-    people = await PeopleModel.findOne({where: {id}});
-} else {
-    people = await PeopleModel.findAll();
-}
 
-let resObject = {
-    count: people ? people.length : 1,
-    results: people,
-};
-
-res.status(200).json(resObject);
-
-}
-
-// took syntax from: https://sequelize.org/v7/manual/model-querying-basics.html#simple-update-queries
-// shared by Michael Metcalf in Remo
-async function create(request, response, next) {
-    
-    console.log('Create person route hit.');
-
-    let newPerson = await PeopleModel.create({ name: request.query.name, yearOfBirth: request.query.year});
-
-    console.log(JSON.stringify(newPerson));
-
-    response.status(200).send(newPerson);
-    
-}
-
-    
-async function update(request, response, next) {
-        console.log('Update person route hit.');
-        let { id } = request.params;
-        let updatedPerson = await PeopleModel.update({ name: request.query.name, yearOfBirth: request.query.year}, { where: {id: id}});
-        
-        console.log(JSON.stringify(updatedPerson));
-
-        response.status(200).send(updatedPerson);
-}
-    
-
-async function remove(request, response, next) {
-    console.log('Remove person route hit.');
-    let { id } = request.params;
-    await PeopleModel.destroy({
-        where: {
-            id: id
-        }
-    });
-
-        response.status(200).send('Person removed. F in chat.');
-}
-    
-    
-    module.exports = router;
+module.exports = router;
