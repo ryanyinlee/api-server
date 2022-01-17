@@ -1,7 +1,5 @@
 'use strict';
 
-const { response } = require("express");
-
 class Collection {
     constructor (model) {
         this.model = model;
@@ -9,7 +7,13 @@ class Collection {
 
     
 async read(id, association) {
-    let records = await this.model.findAll();
+
+    let options = {};
+    if (association) {
+      options.include = association;
+    } // not sure why this is necessary, but was in lecture and demo code
+
+    let records = await this.model.findAll(options);
     return records;
 } 
 

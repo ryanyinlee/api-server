@@ -10,13 +10,19 @@ const router = express.Router(); // object defines routing logic
 router.post('/people', async (request, response) => {
     let people = await PeopleCollection.create(request.params.body);
     console.log(JSON.stringify(people));
-    response.status(201).send(people);
+    // console.log(JSON.stringify(people));
+    // response.status(201).send(people);
+    console.log("Create people route hit.")
+    response.status(200).send("Create people route hit.");
   });
 
 // get or read
 router.get('/people', async (request, response) => {
+    
     let people = await PeopleCollection.read();
+    console.log("Get people route hit.")
     response.status(200).send(people);
+    
   });
 
 
