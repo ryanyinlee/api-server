@@ -6,7 +6,7 @@ This one has games (title and release year) and people (names and year of birth)
 
 ## Installation
 
-to install run `git clone git@github.com:ryanyinlee/basic-api-server.git`
+to install run `git@github.com:ryanyinlee/api-server.git`
 
 `cd` basic-api-server
 
@@ -42,29 +42,21 @@ CRUD is identical for games and people.
 - router.delete('/people/:id', remove)
 
 
-**Special Use Only**
-
-router.delete('/removeallgames', removeallgames) // for testing only modify the 92 to delete the IDs. 
-
-I'll eventually get the logic do delete anything on the DB, but it's not necessary now.
-
 ## Current Deploys/GitHub Repository
 
 GitHubRepository
 
-https://github.com/ryanyinlee/basic-api-server
+https://github.com/ryanyinlee/api-server
 
 Dev Branch:
 
-https://ryanlee-basic-api-server.herokuapp.com/
+https://ryanyinlee-api-server.herokuapp.com/
 
 Main/Production - Due to Heroku limitations this hasn't been used. Just running dev.
 
-https://ryanlee-basic-api-server.herokuapp.com/
+https://ryanyinlee-api-server.herokuapp.com/
 
 
 ## UML
 
-Need more UML help, here's what I got so far.
-
-![](lab03UML.PNG)
+![](lab04uml.PNG)

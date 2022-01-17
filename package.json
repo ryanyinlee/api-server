@@ -22,5 +22,17 @@
     "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.0.2",
     "supertest": "^6.2.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanyinlee/api-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanyinlee/api-server/issues"
+  },
+  "homepage": "https://github.com/ryanyinlee/api-server#readme"
 }
